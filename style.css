@@ -1,5 +1,17 @@
+<<<<<<< HEAD
 .calc {
     display: block;
     border: 1px solid red;
     background-color: chocolate;
+=======
+.button {
+    background: rgb(141, 47, 47);
+    margin: 5px;
+    border: 1px black;
+    width: 15px;
+}
+
+#button{
+    background: green;
+>>>>>>> origin/git
 }

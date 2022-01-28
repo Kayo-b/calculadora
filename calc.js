@@ -1,72 +1,19 @@
-//selecionar o primeiro valor
-var value1 = prompt("Num")
-//selecionar o operador
-var operador = prompt("Operador")
-//selecionar o segundo valor
-var value2 = prompt("Num2")
+const button = document.getElementsByClassName("button");
 
-
-
-//funcoes para cada operacao
-//ADICAO
-const add = function(num1,num2){
-    return num1+num2;
-}
-//SUBTRA
-const sub = function(num1,num2){
-    return num1-num2;
-}
-
-//SOMA
-const sum = function(...num){
-    var arr = num;
-    // arr = arr.concat(num);
-    var reducer = (valAnt, valPost) => valAnt + valPost;
-    return arr.reduce(reducer)
-}
-console.log(sum(3,4,5,6,7,1))
-
-//multipl
-const mult = function(...num){
-    var arr = num;
-    var reducer = (valAnt,valPost) => valAnt * valPost;
-    return arr.reduce(reducer);
-    
-}
-console.log(mult(5,5))
-
-//n^2
-const power = function(num){
-    return num*num;
-
-}
-console.log(power(7))
-
-const fator = function(num) {
-    fatorial = 1;
-    for(let x = 1; x<=num; x++){
-        fatorial *= x;
-        
-        
+var clickEvent = function (btn){
+    for(let x = 0;x<btn.length;x++){
+        btn[x].addEventListener("click", (e) =>{
+            alert(btn[x].textContent);
+        })
     }
-    return fatorial;
 }
-console.log(fator(8))
+clickEvent(button);
 
-const operacao = function(num1,num2,operador){
-    if(operador === "+"){
-    return num1+num2;
-    }
-    else if(operador === "-"){
-        return num1-num2;
-    }
-    else if(operador === )
-}
-const sub = function (num1,num2,operador){
-    return num1 + operador + num2;
-}
+// var getAtt = function() {
+//     var attribute = this.getAttribute("class");
+//     alert(attribute)
+// }
 
-//resetar
-const reducer = (x,y) => x - y
-const arr = [1,2,3]
-console.log(arr.reduce(reducer))
+// for(let x = 0; x<button.length; x++){
+//     button[x].addEventListener('click', getAtt,false)
+// }
