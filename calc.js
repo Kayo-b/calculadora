@@ -1,19 +1,24 @@
+//GETTING INPUT DATA FROM UI
 const button = document.getElementsByClassName("button");
-
+var arr = [];
+var arrJoin = null
 var clickEvent = function (btn){
     for(let x = 0;x<btn.length;x++){
         btn[x].addEventListener("click", (e) =>{
-            alert(btn[x].textContent);
+            let input = btn[x].textContent;
+            alert(exp(input));
         })
     }
+
 }
 clickEvent(button);
 
-// var getAtt = function() {
-//     var attribute = this.getAttribute("class");
-//     alert(attribute)
-// }
+//STORE NUMERIC INPUT
+exp = function(value){
+    arr.push(value);
+    arrJoin = Number(arr.join(''));
+    return arrJoin;
 
-// for(let x = 0; x<button.length; x++){
-//     button[x].addEventListener('click', getAtt,false)
-// }
+}
+//DETERMINE OPERATIONS DEPENDING ON INPUT DATA
+//DISPLAY VALUES 
