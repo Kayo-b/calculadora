@@ -9,6 +9,8 @@ var clickEvent = function (btn){
 }
 clickEvent(button);
 
+
+
 // var getAtt = function() {
 //     var attribute = this.getAttribute("class");
 //     alert(attribute)
