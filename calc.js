@@ -7,31 +7,33 @@ var val = null;
 var variables = []
 var varGeral = null;
 var joinVariables = [];
+var stringNum = ''
 var clickEvent = function (btn){
     for(let x = 0;x<btn.length;x++){
         btn[x].addEventListener("click", (e) =>{
             let input = btn[x].textContent;
             if(input in ["1","2","3","4","5","6","7","8","9","0"]){
                 numbers = exp(input);
-                console.log(numbers);
+                operation(numbers);
+                displayTest(joinVar);
+                // console.log(numbers);
+                console.log(joinVar)
             }
             else if(input === "C"){
-                clear();
+                clear("C");
                 // console.log(numbers);
             }
-
-            else if(input=== "="){
-
+            else if(input === "="){
+                displayTest(calcFunc(joinVar));
+                console.log(calcFunc(joinVar));
             }
             else{
                 val = operation(input);
-                console.log(val[0] val[1])
+                displayTest(val);
+                console.log(val)
             }
-        
         })
     }
-    
-
 }
 clickEvent(button);
 
@@ -40,29 +42,32 @@ const exp = function(value){
     arr.push(value);
     arrJoin = Number(arr.join(''));
     return arrJoin;
-
 }
 //OPERATION
-const operation = function(operator){
-    variables.push(numbers);
-    variables.push(operator);
-    // joinVariables = variables.join('');
-    return variables;
-
-
-
-
+const operation = function(input){
+    // variables.push(numbers);
+    variables.push(input);
+    joinVar = variables.join("");
+    clear();
+    return joinVar;
 }
 //CLEAR
-const clear = function(){
+const clear = function(var1){
     // arrJoin = null;
     arr = []
-    variables = []
-
-    // numbers = null;
-    
+    if(var1 === "C"){
+        variables = [];
+        arrJoin = null;
+        numbers = null;
+        document.getElementById("display").innerHTML = null;
+    }
 } 
-
-// DISPLAY VALUES 
+function calcFunc(value){
+    return new Function('return ' + value)();
+}
+calcFunc(joinVar)
+// DISPLAY VALUES
+function displayTest(var1){   
+    let disp = document.getElementById("display").innerHTML = var1
+}
 // console.log(variables)
-
