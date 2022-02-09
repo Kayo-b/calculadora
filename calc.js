@@ -1,4 +1,4 @@
-//GETTING INPUT DATA FROM UI
+//Variables
 const button = document.getElementsByClassName("button");
 var arr = [];
 var arrJoin = null;
@@ -7,24 +7,26 @@ var val = null;
 var variables = []
 var varGeral = null;
 var joinVariables = [];
-var stringNum = ''
+var stringNum = '';
+//GETTING INPUT DATA FROM UI
 var clickEvent = function (btn){
     for(let x = 0;x<btn.length;x++){
         btn[x].addEventListener("click", (e) =>{
             let input = btn[x].textContent;
-            if(input in ["1","2","3","4","5","6","7","8","9","0"]){
+            if(input in ["1","2","3","4","5","6","7","8","9","0","(",")"]){
                 numbers = exp(input);
                 operation(numbers);
                 displayTest(joinVar);
-                // console.log(numbers);
                 console.log(joinVar)
             }
             else if(input === "C"){
                 clear("C");
-                // console.log(numbers);
             }
             else if(input === "="){
-                displayTest(calcFunc(joinVar));
+                var result = calcFunc(joinVar);
+                clear("variables");
+                variables.push(result);
+                displayTest(result);
                 console.log(calcFunc(joinVar));
             }
             else{
@@ -45,7 +47,6 @@ const exp = function(value){
 }
 //OPERATION
 const operation = function(input){
-    // variables.push(numbers);
     variables.push(input);
     joinVar = variables.join("");
     clear();
@@ -53,13 +54,16 @@ const operation = function(input){
 }
 //CLEAR
 const clear = function(var1){
-    // arrJoin = null;
     arr = []
+    
     if(var1 === "C"){
         variables = [];
         arrJoin = null;
         numbers = null;
         document.getElementById("display").innerHTML = null;
+    }
+    else if(var1==="variables"){
+        variables = [];
     }
 } 
 function calcFunc(value){
@@ -70,4 +74,4 @@ calcFunc(joinVar)
 function displayTest(var1){   
     let disp = document.getElementById("display").innerHTML = var1
 }
-// console.log(variables)
+
