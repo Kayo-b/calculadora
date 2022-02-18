@@ -8,7 +8,9 @@ var variables = []
 var varGeral = null;
 var joinVariables = [];
 var stringNum = '';
-var varStore = []
+var disp = null;
+// var varStore = []
+
 //GETTING INPUT DATA FROM UI
 var clickEvent = function (btn){
     for(let x = 0;x<btn.length;x++){
@@ -18,6 +20,7 @@ var clickEvent = function (btn){
                 numbers = exp(input);
                 let x = operation(numbers);
                 displayTest(x);
+                console.log("operationNUmbers = " + x)
                 console.log(joinVar)
             }
             else if(input === "C"){
@@ -25,20 +28,16 @@ var clickEvent = function (btn){
             }
             else if(input === "="){
                 var result = calcFunc(joinVar);
-                varStore = varStore.concat(joinVar);
+                // varStore = varStore.concat(joinVar);
                 clear("variables");
                 variables.push(result);
                 displayTest(result);
                 console.log(calcFunc(joinVar));
-                if(input==="←"){
-                    joinVar = varStore;
-                    displayTest(joinVar);
-                }
             }
             else if(input === "←"){
+                displayTest(joinVar);
                 operation("bkspce");
-                // clear("bkspce")
-                console.log(varStore)
+                // console.log(varStore)
     
             }
             else{
@@ -64,15 +63,32 @@ const operation = function(input){
         variables.pop();
         joinVar.pop();
         console.log(joinVar)
-        joinVar = joinVar.join("");
-        console.log(joinVar)
-        displayTest(joinVar);
+        clear("variables")
+        //after pressing backspace in a resuult, this keeps the result after pressing reuseable for a new equation
+        let bkspceJoinVar = joinVar.join("");
+
+        variables.push(bkspceJoinVar);
+        console.log("backspace = " + bkspceJoinVar);
+        displayTest(bkspceJoinVar);
 
     }
     else{
         variables.push(input);
         joinVar = variables.join("");
+        console.log(joinVar)
         clear();
+        if(joinVar.length > 12){
+            document.getElementById("display").style.fontSize="2rem"
+
+            if(joinVar.length > 30){
+            document.getElementById("display").style.fontSize="1rem"
+            // joinVar = Number(joinVar);
+            // console.log(joinVar)
+            // joinVar = joinVar.toExponential(10);
+            // joinVar = String(joinVar)
+            }
+        }
+        
 
 
     }
@@ -80,21 +96,20 @@ const operation = function(input){
 }
 //CLEAR
 const clear = function(var1){
-    arr = []
-    
+    arr = [];
     if(var1 === "C"){
         variables = [];
         arrJoin = null;
+        joinVar = [];
         numbers = null;
         document.getElementById("display").innerHTML = null;
+        document.getElementById("display").style.fontSize="5rem"
     }
     else if(var1==="variables"){
         variables = [];
     }
-    // else if(var1==="bkspce"){
-    //     joinVar = Array.from(joinVar)
-    //     joinVar.pop();
-    //     console.log(joinVar)
+    // else if(var1===varStore){
+    //     varStore = [];
     // }
 } 
 function calcFunc(value){
@@ -102,7 +117,14 @@ function calcFunc(value){
 }
 calcFunc(joinVar)
 // DISPLAY VALUES
-function displayTest(var1){   
-    let disp = document.getElementById("display").innerHTML = var1
-}
+function displayTest(var1){
+    document.getElementById("display").innerHTML = var1
+    disp = document.getElementById("display").innerHTML
+    // if(disp > 999999999999){
+    //     disp = Number()
+    //     console.log(disp)
 
+    // }
+    
+
+}
